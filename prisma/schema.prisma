@@ -12,3 +12,113 @@ model User {
   name  String
   email String  @unique
 }
+
+model Communaute {
+  id           Int       @id @default(autoincrement())
+  pays         String    @db.VarChar(50)
+  localisation String    @db.VarChar(100)
+  utilisateurs Utilisateur[]
+  sousCommunautes SousCommunaute[]
+}
+
+model Utilisateur {
+  id           Int       @id @default(autoincrement())
+  nomComplet   String    @db.VarChar(100)
+  mail         String    @unique @db.VarChar(100)
+  motDePasse   String    @db.Char(60)
+  imageUrl     String?   @db.VarChar(2083)
+  videoUrl     String?   @db.VarChar(2083)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  idCommunaute Int
+  communaute   Communaute @relation(fields: [idCommunaute], references: [id], onDelete: Cascade)
+
+  publications Publication[]
+  discussions  DiscussionSousCommunaute[]
+  reactions    ReactionPub[]
+  commentaires CommentairePub[]
+  sousCommunautes RejoindreSousCommunaute[]
+}
+
+model Categorie {
+  id    Int    @id @default(autoincrement()) @map("id") @db.TinyInt
+  nom   String @unique @db.VarChar(50)
+  sousCommunautes SousCommunaute[]
+}
+
+model SousCommunaute {
+  id             Int       @id @default(autoincrement()) @db.MediumInt
+  idCommunaute   Int
+  idCategorie    Int       @db.TinyInt
+  nom            String    @db.VarChar(50)
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  communaute     Communaute @relation(fields: [idCommunaute], references: [id], onDelete: Cascade)
+  categorie      Categorie @relation(fields: [idCategorie], references: [id], onDelete: Cascade)
+  
+  publications   Publication[]
+  discussions    DiscussionSousCommunaute[]
+  membres        RejoindreSousCommunaute[]
+}
+
+model Publication {
+  id              Int       @id @default(autoincrement())
+  titre          String    @db.VarChar(100)
+  contenu        String    @db.Text
+  idUtilisateur  Int
+  idSousCommunaute Int     @db.MediumInt
+  mediaUrl       String?   @db.VarChar(2083)
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  utilisateur    Utilisateur @relation(fields: [idUtilisateur], references: [id], onDelete: Cascade)
+  sousCommunaute SousCommunaute @relation(fields: [idSousCommunaute], references: [id], onDelete: Cascade)
+
+  reactions      ReactionPub[]
+  commentaires   CommentairePub[]
+}
+
+model DiscussionSousCommunaute {
+  id              BigInt    @id @default(autoincrement())
+  message        String    @db.Text
+  idUtilisateur  Int
+  idSousCommunaute Int     @db.MediumInt
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  utilisateur    Utilisateur @relation(fields: [idUtilisateur], references: [id], onDelete: Cascade)
+  sousCommunaute SousCommunaute @relation(fields: [idSousCommunaute], references: [id], onDelete: Cascade)
+}
+
+model ReactionPub {
+  idPublication  Int
+  idUtilisateur  Int
+
+  publication   Publication @relation(fields: [idPublication], references: [id], onDelete: Cascade)
+  utilisateur   Utilisateur @relation(fields: [idUtilisateur], references: [id], onDelete: Cascade)
+
+  @@id([idPublication, idUtilisateur])
+}
+
+model CommentairePub {
+  id             Int       @id @default(autoincrement())
+  contenu        String    @db.Text
+  idPublication  Int
+  idUtilisateur  Int
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  publication    Publication @relation(fields: [idPublication], references: [id], onDelete: Cascade)
+  utilisateur    Utilisateur @relation(fields: [idUtilisateur], references: [id], onDelete: Cascade)
+}
+
+model RejoindreSousCommunaute {
+  idSousCommunaute Int  @db.MediumInt
+  idUtilisateur    Int
+  joinedAt         DateTime @default(now()) @map("joined_at")
+
+  sousCommunaute   SousCommunaute @relation(fields: [idSousCommunaute], references: [id], onDelete: Cascade)
+  utilisateur      Utilisateur @relation(fields: [idUtilisateur], references: [id], onDelete: Cascade)
+
+  @@id([idSousCommunaute, idUtilisateur])
+}
