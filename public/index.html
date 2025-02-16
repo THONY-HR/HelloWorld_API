@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Hello World</title>
+    <style>
+        /* 🌙 Style Général */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a2e;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* 🚀 Conteneur Principal */
+        .container {
+            max-width: 90%;
+            width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* 🎬 Animation d'apparition */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 🔥 Animation de Glitch Text */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            position: relative;
+            color: #ff6b6b;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff6b6b, 0 0 10px #f06595;
+            }
+            to {
+                text-shadow: 0 0 10px #ff6b6b, 0 0 20px #f06595;
+            }
+        }
+
+        /* 🖥 Effet Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                width: 90%;
+            }
+        }
+
+        /* 🌟 Animation Typing */
+        .typing {
+            font-size: 1.2rem;
+            font-family: monospace;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            display: inline-block;
+            animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Votre API pour HELLO WORLD</h1>
+        <p id="response" class="typing"></p>
+    </div>
+
+    <script>
+        // Simulation d'une réponse API avec effet "typing"
+        let responseText = '{ "message": "Hello, World!", "status": 200, "source": "Fake API" }';
+        let responseElement = document.getElementById("response");
+
+        setTimeout(() => {
+            responseElement.textContent = responseText;
+        }, 100);  
+    </script>
+
+</body>
+</html>
