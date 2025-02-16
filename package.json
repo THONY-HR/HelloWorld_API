@@ -2,10 +2,10 @@
   "name": "hello-prisma",
   "license": "MIT",
   "scripts": {
-    "queries": "ts-node ./src/queries.ts",
-    "caching": "ts-node ./src/caching.ts",
-    "realtime": "ts-node ./src/realtime.ts",
-    "start": "node server.js"
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node build/server.js",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "6.3.1",
