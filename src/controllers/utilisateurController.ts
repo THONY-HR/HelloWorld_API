@@ -30,12 +30,12 @@ export const getUtilisateurById = async (req: Request, res: Response): Promise<v
 
 // Créer un nouvel utilisateur
 export const createUtilisateur = async (req: Request, res: Response): Promise<void> => {
-  const { nomComplet, mail, motDePasse, idCommunaute, imageUrl, videoUrl } = req.body;
+  const { nomComplet, mail, motDePasse, idCommunaute, imageUrl} = req.body;
   try {
     const newUser = await prisma.utilisateur.create({
-      data: { nomComplet, mail, motDePasse, idCommunaute, imageUrl, videoUrl },
+      data: { nomComplet, mail, motDePasse, idCommunaute, imageUrl},
     });
-    res.json({ message: "Utilisateur créé avec succès", newUser });
+    res.json({ etat: true , message: "Utilisateur créé avec succès", newUser });
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
