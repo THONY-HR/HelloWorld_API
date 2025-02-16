@@ -1,0 +1,30 @@
+{
+  "name": "hello-prisma",
+  "license": "MIT",
+  "scripts": {
+    "queries": "ts-node ./src/queries.ts",
+    "caching": "ts-node ./src/caching.ts",
+    "realtime": "ts-node ./src/realtime.ts",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "6.3.1",
+    "@prisma/extension-accelerate": "1.2.1",
+    "@prisma/extension-pulse": "1.2.0",
+    "dotenv": "16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "prisma": "6.3.1",
+    "ts-node": "10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "version": "1.0.0",
+  "description": "<!-- https://www.prisma.io/docs/getting-started/quickstart-prismaPostgres --> This project contains a sample application demonstrating various capabilities and workflows of [Prisma Postgres](https://prisma.io/data-platform/postgres):",
+  "main": "server.js",
+  "keywords": [],
+  "author": ""
+}
