@@ -30,10 +30,10 @@ export const getUtilisateurById = async (req: Request, res: Response): Promise<v
 
 // Créer un nouvel utilisateur
 export const createUtilisateur = async (req: Request, res: Response): Promise<void> => {
-  const { nomComplet, mail, motDePasse, idCommunaute, imageUrl} = req.body;
+  const { nomComplet, mail, idCommunaute, imageUrl} = req.body;
   try {
     const newUser = await prisma.utilisateur.create({
-      data: { nomComplet, mail, motDePasse, idCommunaute, imageUrl},
+      data: { nomComplet, mail, idCommunaute, imageUrl},
     });
     res.json({ etat: true , message: "Utilisateur créé avec succès", newUser });
   } catch (error: any) {
@@ -44,11 +44,11 @@ export const createUtilisateur = async (req: Request, res: Response): Promise<vo
 // Mettre à jour un utilisateur
 export const updateUtilisateur = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { nomComplet, mail, motDePasse, idCommunaute, imageUrl} = req.body;
+  const { nomComplet, mail, idCommunaute, imageUrl} = req.body;
   try {
     const updatedUser = await prisma.utilisateur.update({
       where: { id: Number(id) },
-      data: { nomComplet, mail, motDePasse, idCommunaute, imageUrl},
+      data: { nomComplet, mail, idCommunaute, imageUrl},
     });
     res.json({ message: "Utilisateur mis à jour avec succès", updatedUser });
   } catch (error: any) {
@@ -71,12 +71,12 @@ export const deleteUtilisateur = async (req: Request, res: Response): Promise<vo
 
 // Connexion utilisateur
 export const loginUtilisateur = async (req: Request, res: Response): Promise<void> => {
-  const { mail, motDePasse } = req.body;
+  const { mail } = req.body;
   try {
     const utilisateur = await prisma.utilisateur.findUnique({
       where: { mail },
     });
-    if (!utilisateur || utilisateur.motDePasse !== motDePasse) {
+    if (!utilisateur) {
       res.status(401).json({ message: "Email ou mot de passe incorrect" });
       return;
     }
