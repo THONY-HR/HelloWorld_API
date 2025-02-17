@@ -44,11 +44,11 @@ export const createUtilisateur = async (req: Request, res: Response): Promise<vo
 // Mettre à jour un utilisateur
 export const updateUtilisateur = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { nomComplet, mail, motDePasse, idCommunaute, imageUrl, videoUrl } = req.body;
+  const { nomComplet, mail, motDePasse, idCommunaute, imageUrl} = req.body;
   try {
     const updatedUser = await prisma.utilisateur.update({
       where: { id: Number(id) },
-      data: { nomComplet, mail, motDePasse, idCommunaute, imageUrl, videoUrl },
+      data: { nomComplet, mail, motDePasse, idCommunaute, imageUrl},
     });
     res.json({ message: "Utilisateur mis à jour avec succès", updatedUser });
   } catch (error: any) {
