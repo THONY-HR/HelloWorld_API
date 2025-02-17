@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { 
   getUtilisateurs, 
-  getUtilisateurById, 
+  getUtilisateurByEmail, 
   createUtilisateur, 
   updateUtilisateur, 
   deleteUtilisateur, 
@@ -11,10 +11,10 @@ import {
 const router = Router();
 
 router.get('/getUtilisateurs', getUtilisateurs);
-router.get('/getUtilisateur/:id', getUtilisateurById);
-router.post('/CreeUtilisateur', createUtilisateur);
+router.get('/getUtilisateur/:mail', getUtilisateurByEmail);
+router.post('/creeUtilisateur', createUtilisateur);
 router.put('/updateUtilisateur/:id', updateUtilisateur);
 router.delete('/deleteUtilisateur/:id', deleteUtilisateur);
-router.post('/loginUtilisateur/login', loginUtilisateur);
+router.post('/loginUtilisateur', loginUtilisateur);
 
 export default router;

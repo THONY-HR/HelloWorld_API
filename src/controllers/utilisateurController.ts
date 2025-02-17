@@ -12,11 +12,11 @@ export const getUtilisateurs = async (req: Request, res: Response): Promise<void
 };
 
 // Récupérer un utilisateur par ID
-export const getUtilisateurById = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+export const getUtilisateurByEmail = async (req: Request, res: Response): Promise<void> => {
+  const { mail } = req.params;
   try {
     const utilisateur = await prisma.utilisateur.findUnique({
-      where: { id: Number(id) },
+      where: { mail: mail },
     });
     if (!utilisateur) {
       res.status(200).json({ message: "Utilisateur non trouvé" });
@@ -30,10 +30,10 @@ export const getUtilisateurById = async (req: Request, res: Response): Promise<v
 
 // Créer un nouvel utilisateur
 export const createUtilisateur = async (req: Request, res: Response): Promise<void> => {
-  const { nomComplet, mail, idCommunaute, imageUrl} = req.body;
+  const { nomComplet, pseudo, mail, idCommunaute, imageUrl} = req.body;
   try {
     const newUser = await prisma.utilisateur.create({
-      data: { nomComplet, mail, idCommunaute, imageUrl},
+      data: { nomComplet, pseudo, mail, idCommunaute, imageUrl},
     });
     res.json({ etat: true , message: "Utilisateur créé avec succès", newUser });
   } catch (error: any) {
@@ -44,11 +44,11 @@ export const createUtilisateur = async (req: Request, res: Response): Promise<vo
 // Mettre à jour un utilisateur
 export const updateUtilisateur = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { nomComplet, mail, idCommunaute, imageUrl} = req.body;
+  const { nomComplet, pseudo, mail, idCommunaute, imageUrl} = req.body;
   try {
     const updatedUser = await prisma.utilisateur.update({
       where: { id: Number(id) },
-      data: { nomComplet, mail, idCommunaute, imageUrl},
+      data: { nomComplet, pseudo, mail, idCommunaute, imageUrl},
     });
     res.json({ message: "Utilisateur mis à jour avec succès", updatedUser });
   } catch (error: any) {
