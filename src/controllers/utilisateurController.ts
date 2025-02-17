@@ -58,10 +58,10 @@ export const updateUtilisateur = async (req: Request, res: Response): Promise<vo
 
 // Supprimer un utilisateur
 export const deleteUtilisateur = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+  const { email } = req.params;
   try {
     await prisma.utilisateur.delete({
-      where: { id: Number(id) },
+      where: { mail: email },
     });
     res.json({ message: "Utilisateur supprimé avec succès" });
   } catch (error: any) {
