@@ -13,7 +13,7 @@ const router = Router();
 router.get('/getUtilisateurs', getUtilisateurs);
 router.get('/getUtilisateur/:mail', getUtilisateurByEmail);
 router.post('/creeUtilisateur', createUtilisateur);
-router.put('/updateUtilisateur/:id', updateUtilisateur);
+router.put('/updateUtilisateur/:email', updateUtilisateur);
 router.delete('/deleteUtilisateur/:id', deleteUtilisateur);
 router.post('/loginUtilisateur', loginUtilisateur);
 

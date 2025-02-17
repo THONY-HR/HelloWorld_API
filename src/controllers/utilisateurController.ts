@@ -43,11 +43,11 @@ export const createUtilisateur = async (req: Request, res: Response): Promise<vo
 
 // Mettre à jour un utilisateur
 export const updateUtilisateur = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+  const { email } = req.params;
   const { nomComplet, pseudo, mail, idCommunaute, imageUrl} = req.body;
   try {
     const updatedUser = await prisma.utilisateur.update({
-      where: { id: Number(id) },
+      where: { id: email },
       data: { nomComplet, pseudo, mail, idCommunaute, imageUrl},
     });
     res.json({ message: "Utilisateur mis à jour avec succès", updatedUser });
@@ -77,7 +77,7 @@ export const loginUtilisateur = async (req: Request, res: Response): Promise<voi
       where: { mail },
     });
     if (!utilisateur) {
-      res.status(401).json({ message: "Email ou mot de passe incorrect" });
+      res.status(401).json({ message: "Email incorrect" });
       return;
     }
     res.json({ message: "Connexion réussie", utilisateur });
