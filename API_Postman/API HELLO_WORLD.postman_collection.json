@@ -315,7 +315,7 @@
 		},
 		{
 			"key": "base_url",
-			"value": "https://restaurantapi-524bf01f495e.herokuapp.com/api"
+			"value": "https://helloworld-api.up.railway.app/"
 		}
 	]
 }
