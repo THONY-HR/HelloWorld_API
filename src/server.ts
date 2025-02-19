@@ -8,8 +8,11 @@ import communauteRoutes from './routes/communauteRoutes';
 const app = express();
 const port = 3000;
 
-// Configuration de CORS pour autoriser toutes les origines
-app.use(cors()); // Accepte toutes les URL
+// Configuration de CORS pour autoriser toutes les origines et méthodes
+app.use(cors({
+  origin: '*', // Accepte toutes les URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Accepte toutes les méthodes
+}));
 
 // Middleware pour parser le JSON
 app.use(express.json());
