@@ -7,7 +7,6 @@ const SITE_NAME = process.env.SITE_NAME || "Anthony-Ai";
 // Fonction pour appeler l'API IA
 async function apiIA(API_KEY: string, TOKEN_MESSAGE: any[], MODEL_IA: string): Promise<any> {
     try {
-        const fetch = (await import("node-fetch")).default; // Import dynamique
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
