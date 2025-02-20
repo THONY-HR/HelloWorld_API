@@ -325,6 +325,156 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Intelligence Artificiel",
+			"item": [
+				{
+					"name": "Mistral-24B",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\"role\": \"assistant\",\"content\":\"Bonjour\"},\r\n        {\"role\": \"user\",\"content\":\"peux tu traiter mon base de donner\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}ia-Anthony/mistral-24B",
+							"host": [
+								"{{base_url}}ia-Anthony"
+							],
+							"path": [
+								"mistral-24B"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deepseek 8B",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\"role\": \"assistant\",\"content\":\"Bonjour\"},\r\n        {\"role\": \"user\",\"content\":\"Quelles est ton point fort\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}ia-Anthony/deepseek-8B",
+							"host": [
+								"{{base_url}}ia-Anthony"
+							],
+							"path": [
+								"deepseek-8B"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deepseek 32B",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\"role\": \"assistant\",\"content\":\"Bonjour\"},\r\n        {\"role\": \"user\",\"content\":\"donne moi une code java, class User simple\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}ia-Anthony/deepseek-32B",
+							"host": [
+								"{{base_url}}ia-Anthony"
+							],
+							"path": [
+								"deepseek-32B"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deepseek-free",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\"role\": \"assistant\",\"content\":\"Bonjour\"},\r\n        {\"role\": \"user\",\"content\":\"Quelles est ton point fort\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}ia-Anthony/deepseek-free",
+							"host": [
+								"{{base_url}}ia-Anthony"
+							],
+							"path": [
+								"deepseek-free"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Qwen-turbo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\"role\": \"assistant\",\"content\":\"Bonjour\"},\r\n        {\"role\": \"user\",\"content\":\"Quelles est ton point fort\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}ia-Anthony/qwen-turbo",
+							"host": [
+								"{{base_url}}ia-Anthony"
+							],
+							"path": [
+								"qwen-turbo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
