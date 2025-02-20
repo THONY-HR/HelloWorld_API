@@ -1,5 +1,4 @@
-import { Request, Response } from 'express';
-import fetch from 'node-fetch';
+import { Request, Response } from "express";
 
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const SITE_URL = process.env.SITE_URL || "https://helloworld-api.up.railway.app";
@@ -8,6 +7,7 @@ const SITE_NAME = process.env.SITE_NAME || "Anthony-Ai";
 // Fonction pour appeler l'API IA
 async function apiIA(API_KEY: string, TOKEN_MESSAGE: any[], MODEL_IA: string): Promise<any> {
     try {
+        const fetch = (await import("node-fetch")).default; // Import dynamique
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
