@@ -35,7 +35,7 @@ async function apiIA(API_KEY: string, SITE_URL: string, SITE_NAME: string, TOKEN
 // Contrôleur pour gérer les requêtes de chat
 export const chatMistral = async (req: Request, res: Response): Promise<void> => {
     try {
-        const API_KEY = "sk-or-v1-dd69f1b610db87baf6e1a533118fde4f26d0743417b9a127e7b286542106fe5";
+        const API_KEY = "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";
         const SITE_URL = "https://helloworld-api.up.railway.app";
         const SITE_NAME = "Anthony-Ai";
         const MODEL_IA = "cognitivecomputations/dolphin3.0-r1-mistral-24b:free";
