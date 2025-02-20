@@ -51,6 +51,7 @@ async function handleChatRequest(req: Request, res: Response, model: string, api
         }
 
         const responseData = await apiIA(API_KEY, TOKEN_MESSAGE, model);
+        console.log(responseData);
         res.json(responseData.choices?.[0]?.message || { error: "Réponse invalide de l'IA." });
 
     } catch (error: any) {
