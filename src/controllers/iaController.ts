@@ -63,4 +63,4 @@ async function handleChatRequest(req: Request, res: Response, model: string, api
 export const chatMistral = (req: Request, res: Response) => handleChatRequest(req, res, "cognitivecomputations/dolphin3.0-r1-mistral-24b:free", "API_KEY_MISTRAL");
 export const chatDeepseek8B = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-r1-distill-llama-8b", "API_KEY_DEEPSEEK_8B");
 export const chatDeepseek32B = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-r1-distill-qwen-32b", "API_KEY_DEEPSEEK_32B");
-export const chatGPT4Turbo = (req: Request, res: Response) => handleChatRequest(req, res, "openai/gpt-4-turbo", "API_KEY_GPT4_TURBO");
+export const chatGPT4Turbo = (req: Request, res: Response) => handleChatRequest(req, res, "qwen/qwen-turbo", "API_KEY_GPT4_TURBO");
