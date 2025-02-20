@@ -36,7 +36,7 @@ async function apiIA(API_KEY: string, SITE_URL: string, SITE_NAME: string, TOKEN
 export const chatMistral = async (req: Request, res: Response): Promise<void> => {
     try {
         const API_KEY = "sk-or-v1-dd69f1b610db87baf6e1a533118fde4f26d0743417b9a127e7b286542106fe5";
-        const SITE_URL = "http://192.168.1.173:4000";
+        const SITE_URL = "https://helloworld-api.up.railway.app";
         const SITE_NAME = "Anthony-Ai";
         const MODEL_IA = "cognitivecomputations/dolphin3.0-r1-mistral-24b:free";
         const { TOKEN_MESSAGE } = req.body;
