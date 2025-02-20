@@ -4,6 +4,7 @@ import path from 'path';
 
 import utilisateurRoutes from './routes/utilisateurRoutes';
 import communauteRoutes from './routes/communauteRoutes';
+import iaRoutes from './routes/iaRoutes';
 
 const app = express();
 const port = 3000;
@@ -20,6 +21,9 @@ app.use(express.json());
 // Utilise les routes pour les utilisateurs et les communautés
 app.use('/utilisateur', utilisateurRoutes);
 app.use('/communaute', communauteRoutes);
+
+// Intelligence artificiel API
+app.use('/ia-Anthony', iaRoutes);
 
 // Route pour afficher la page HTML à la racine
 app.get('/', (req, res) => {
