@@ -47,7 +47,8 @@ export const chatMistral = async (req: Request, res: Response): Promise<void> =>
         }
 
         const responseData = await apiIA(API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE,MODEL_IA);
-        res.json(responseData);
+
+        res.json(responseData.choices[0].message);
 
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Erreur serveur" });
