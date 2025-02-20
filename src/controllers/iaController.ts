@@ -56,10 +56,31 @@ export const chatMistral = async (req: Request, res: Response): Promise<void> =>
 };
 
 // Contrôleur pour gérer les requêtes de chat
-export const chatDeepseek = async (req: Request, res: Response): Promise<void> => {
+export const chatDeepseek8B = async (req: Request, res: Response): Promise<void> => {
     try {
         const API_KEY = "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";
         const MODEL_IA = "deepseek/deepseek-r1-distill-llama-8b";
+        const { TOKEN_MESSAGE } = req.body;
+
+        if (!API_KEY || !SITE_URL || !SITE_NAME || !TOKEN_MESSAGE) {
+            res.status(400).json({ error: "Tous les paramètres (API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE) sont requis." });
+            return;
+        }
+
+        const responseData = await apiIA(API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE,MODEL_IA);
+
+        res.json(responseData.choices[0].message);
+
+    } catch (error: any) {
+        res.status(500).json({ error: error.message || "Erreur serveur" });
+    }
+};
+
+// Contrôleur pour gérer les requêtes de chat
+export const chatDeepseek32B = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const API_KEY = "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";
+        const MODEL_IA = "deepseek/deepseek-r1-distill-qwen-32b";
         const { TOKEN_MESSAGE } = req.body;
 
         if (!API_KEY || !SITE_URL || !SITE_NAME || !TOKEN_MESSAGE) {
