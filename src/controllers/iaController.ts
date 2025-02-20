@@ -1,18 +1,19 @@
 import { Request, Response } from 'express';
+import fetch from 'node-fetch';
 
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const SITE_URL = "https://helloworld-api.up.railway.app";
-const SITE_NAME = "Anthony-Ai";
+const SITE_URL = process.env.SITE_URL || "https://helloworld-api.up.railway.app";
+const SITE_NAME = process.env.SITE_NAME || "Anthony-Ai";
 
 // Fonction pour appeler l'API IA
-async function apiIA(API_KEY: string, SITE_URL: string, SITE_NAME: string, TOKEN_MESSAGE: any[],MODEL_IA: string): Promise<any> {
+async function apiIA(API_KEY: string, TOKEN_MESSAGE: any[], MODEL_IA: string): Promise<any> {
     try {
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${API_KEY}`,
-                "HTTP-Referer": SITE_URL, // Optionnel : URL du site pour le ranking sur openrouter.ai
-                "X-Title": SITE_NAME, // Optionnel : Titre du site pour le ranking sur openrouter.ai
+                "HTTP-Referer": SITE_URL,
+                "X-Title": SITE_NAME,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -34,65 +35,32 @@ async function apiIA(API_KEY: string, SITE_URL: string, SITE_NAME: string, TOKEN
     }
 }
 
-// Contrôleur pour gérer les requêtes de chat
-export const chatMistral = async (req: Request, res: Response): Promise<void> => {
+// Fonction générique pour gérer les requêtes IA
+async function handleChatRequest(req: Request, res: Response, model: string, apiKeyEnvVar: string): Promise<void> {
     try {
-        const API_KEY = "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";
-        const MODEL_IA = "cognitivecomputations/dolphin3.0-r1-mistral-24b:free";
-        const { TOKEN_MESSAGE } = req.body;
+        const API_KEY = process.env[apiKeyEnvVar];
 
-        if (!API_KEY || !SITE_URL || !SITE_NAME || !TOKEN_MESSAGE) {
-            res.status(400).json({ error: "Tous les paramètres (API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE) sont requis." });
+        if (!API_KEY) {
+            res.status(500).json({ error: `Clé API (${apiKeyEnvVar}) non définie dans les variables d'environnement.` });
             return;
         }
 
-        const responseData = await apiIA(API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE,MODEL_IA);
+        const { TOKEN_MESSAGE } = req.body;
+        if (!TOKEN_MESSAGE || !Array.isArray(TOKEN_MESSAGE)) {
+            res.status(400).json({ error: "TOKEN_MESSAGE est requis et doit être un tableau." });
+            return;
+        }
 
-        res.json(responseData.choices[0].message);
+        const responseData = await apiIA(API_KEY, TOKEN_MESSAGE, model);
+        res.json(responseData.choices?.[0]?.message || { error: "Réponse invalide de l'IA." });
 
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Erreur serveur" });
     }
-};
+}
 
-// Contrôleur pour gérer les requêtes de chat
-export const chatDeepseek8B = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const API_KEY = "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";
-        const MODEL_IA = "deepseek/deepseek-r1-distill-llama-8b";
-        const { TOKEN_MESSAGE } = req.body;
-
-        if (!API_KEY || !SITE_URL || !SITE_NAME || !TOKEN_MESSAGE) {
-            res.status(400).json({ error: "Tous les paramètres (API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE) sont requis." });
-            return;
-        }
-
-        const responseData = await apiIA(API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE,MODEL_IA);
-
-        res.json(responseData.choices[0].message);
-
-    } catch (error: any) {
-        res.status(500).json({ error: error.message || "Erreur serveur" });
-    }
-};
-
-// Contrôleur pour gérer les requêtes de chat
-export const chatDeepseek32B = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const API_KEY = "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";
-        const MODEL_IA = "deepseek/deepseek-r1-distill-qwen-32b";
-        const { TOKEN_MESSAGE } = req.body;
-
-        if (!API_KEY || !SITE_URL || !SITE_NAME || !TOKEN_MESSAGE) {
-            res.status(400).json({ error: "Tous les paramètres (API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE) sont requis." });
-            return;
-        }
-
-        const responseData = await apiIA(API_KEY, SITE_URL, SITE_NAME, TOKEN_MESSAGE,MODEL_IA);
-
-        res.json(responseData.choices[0].message);
-
-    } catch (error: any) {
-        res.status(500).json({ error: error.message || "Erreur serveur" });
-    }
-};
+// Définition des routes spécifiques
+export const chatMistral = (req: Request, res: Response) => handleChatRequest(req, res, "cognitivecomputations/dolphin3.0-r1-mistral-24b:free", "API_KEY_MISTRAL");
+export const chatDeepseek8B = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-r1-distill-llama-8b", "API_KEY_DEEPSEEK_8B");
+export const chatDeepseek32B = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-r1-distill-qwen-32b", "API_KEY_DEEPSEEK_32B");
+export const chatGPT4Turbo = (req: Request, res: Response) => handleChatRequest(req, res, "openai/gpt-4-turbo", "API_KEY_GPT4_TURBO");
