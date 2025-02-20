@@ -27,10 +27,10 @@ export const createCommunaute = async (req: Request, res: Response): Promise<voi
 
 // Supprimer un utilisateur
 export const deleteCommunaute = async (req: Request, res: Response): Promise<void> => {
-  const { pays } = req.params; // pays est déjà une string
+  const { id } = req.params; // pays est déjà une string
   try {
     await prisma.communaute.delete({
-      where: { pays: pays }, // Pas besoin de stringify()
+      where: { id: Number(id) }, // Pas besoin de stringify()
     });
     res.json({ message: "Communauté supprimée avec succès" });
   } catch (error: any) {
