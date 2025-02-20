@@ -1,10 +1,14 @@
 import { Router } from 'express';
 import { 
-    getCommunaute
+    getCommunaute,
+    createCommunaute,
+    deleteCommunaute
 } from '../controllers/communauteController';
 
 const router = Router();
 
 router.get('/getCommunaute', getCommunaute);
+router.post('/creeCommunaute', createCommunaute);
+router.delete('/deleteCommunaute', deleteCommunaute);
 
 export default router;

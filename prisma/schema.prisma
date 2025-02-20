@@ -9,8 +9,9 @@ datasource db {
 
 model Communaute {
   id           Int       @id @default(autoincrement())
-  pays         String    @db.VarChar(50)
+  pays         String    @unique @db.VarChar(50)
   localisation String    @db.VarChar(100)
+  imageUrl     String?   @db.VarChar(2083)
   utilisateurs Utilisateur[]
   sousCommunautes SousCommunaute[]
 }
