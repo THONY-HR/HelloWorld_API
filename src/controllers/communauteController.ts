@@ -26,11 +26,11 @@ export const createCommunaute = async (req: Request, res: Response): Promise<voi
 
 // Mettre à jour un utilisateur
 export const updateCommunaute = async (req: Request, res: Response): Promise<void> => {
-  const { paysN } = req.params;
+  const { id } = req.params;
   const { pays, localisation, imageUrl } = req.body;
   try {
     const updatedUser = await prisma.communaute.update({
-      where: { pays: paysN },
+      where: { id: Number(id) },
       data: { pays, localisation, imageUrl},
     });
     res.json({ message: "Communaute mis à jour avec succès", updatedUser });
