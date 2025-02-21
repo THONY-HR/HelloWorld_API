@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import prisma from '../prisma';
-import { stringify } from 'querystring';
 
 // Récupérer tous les Communaute
 export const getCommunaute = async (req: Request, res: Response): Promise<void> => {
@@ -20,6 +19,21 @@ export const createCommunaute = async (req: Request, res: Response): Promise<voi
       data: {pays,localisation,imageUrl},
     });
     res.json({ etat: true , message: "Communaute créé avec succès", newCommunaute });
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Mettre à jour un utilisateur
+export const updateCommunaute = async (req: Request, res: Response): Promise<void> => {
+  const { paysN } = req.params;
+  const { pays, localisation, imageUrl } = req.body;
+  try {
+    const updatedUser = await prisma.communaute.update({
+      where: { pays: paysN },
+      data: { pays, localisation, imageUrl},
+    });
+    res.json({ message: "Communaute mis à jour avec succès", updatedUser });
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
