@@ -9,6 +9,6 @@ const router = Router();
 
 router.get('/getCommunaute', getCommunaute);
 router.post('/creeCommunaute', createCommunaute);
-router.put('/updateCommunaute/:pays', updateCommunaute);
+router.put('/updateCommunaute/:paysN', updateCommunaute);
 
 export default router;
