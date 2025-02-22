@@ -67,3 +67,4 @@ export const chatDeepseek8B = (req: Request, res: Response) => handleChatRequest
 export const chatDeepseek32B = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-r1-distill-qwen-32b", "API_KEY_DEEPSEEK_32B");
 export const chatQwen = (req: Request, res: Response) => handleChatRequest(req, res, "qwen/qwen-turbo", "API_KEY_QWEN");
 export const chatDeepseekFree = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat:free", "API_KEY_DEEPSEEK_FREE");
+export const chatDeepseek = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat", "API_KEY_DEEPSEEK_FREE");
