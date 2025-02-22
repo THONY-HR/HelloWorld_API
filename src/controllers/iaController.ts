@@ -68,3 +68,4 @@ export const chatDeepseek32B = (req: Request, res: Response) => handleChatReques
 export const chatQwen = (req: Request, res: Response) => handleChatRequest(req, res, "qwen/qwen-turbo", "API_KEY_OPEN_ROUTER");
 export const chatDeepseekFree = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat:free", "API_KEY_OPEN_ROUTER");
 export const chatDeepseek = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat", "API_KEY_OPEN_ROUTER");
+export const chatclaude = (req: Request, res: Response) => handleChatRequest(req, res, "anthropic/claude-3-haiku:beta", "API_KEY_OPEN_ROUTER");

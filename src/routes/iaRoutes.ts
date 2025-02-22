@@ -1,5 +1,12 @@
 import { Router } from 'express';
-import { chatMistral, chatDeepseek8B,chatDeepseek32B,chatQwen,chatDeepseekFree,chatDeepseek} from '../controllers/iaController';
+import { chatMistral,
+    chatDeepseek8B,
+    chatDeepseek32B,
+    chatQwen,
+    chatDeepseekFree,
+    chatDeepseek,
+    chatclaude
+} from '../controllers/iaController';
 
 const router = Router();
 
@@ -9,4 +16,5 @@ router.post('/deepseek-8B', chatDeepseek8B);
 router.post('/deepseek-32B', chatDeepseek32B);
 router.post('/deepseek', chatDeepseek);
 router.post('/qwen-turbo', chatQwen);
+router.post('/claude-3-haiku', chatclaude);
 export default router;
