@@ -18,8 +18,7 @@ async function apiIA(API_KEY: string, TOKEN_MESSAGE: any[], MODEL_IA: string): P
             },
             body: JSON.stringify({
                 model: MODEL_IA,
-                messages: TOKEN_MESSAGE,
-                stream: true 
+                messages: TOKEN_MESSAGE
             })
         });
 
@@ -68,4 +67,3 @@ export const chatDeepseek8B = (req: Request, res: Response) => handleChatRequest
 export const chatDeepseek32B = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-r1-distill-qwen-32b", "API_KEY_DEEPSEEK_32B");
 export const chatQwen = (req: Request, res: Response) => handleChatRequest(req, res, "qwen/qwen-turbo", "API_KEY_QWEN");
 export const chatDeepseekFree = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat:free", "API_KEY_DEEPSEEK_FREE");
-export const chatGPT4o = (req: Request, res: Response) => handleChatRequest(req, res, "openai/gpt-4o:online", "API_KEY_GPT4o");
