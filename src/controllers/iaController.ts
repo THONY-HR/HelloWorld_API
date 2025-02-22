@@ -34,6 +34,35 @@ async function apiIA(API_KEY: string, TOKEN_MESSAGE: any[], MODEL_IA: string): P
     }
 }
 
+// Fonction pour appeler l'API IA
+async function apiIAWebSearch(API_KEY: string, TOKEN_MESSAGE: any[], MODEL_IA: string): Promise<any> {
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${API_KEY}`,
+                "HTTP-Referer": SITE_URL,
+                "X-Title": SITE_NAME,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: MODEL_IA,
+                plugins: TOKEN_MESSAGE
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur API: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error("Erreur lors de l'appel à l'API IA:", error);
+        throw error;
+    }
+}
 // Fonction générique pour gérer les requêtes IA
 async function handleChatRequest(req: Request, res: Response, model: string, apiKeyEnvVar: string): Promise<void> {
     try {
@@ -50,7 +79,8 @@ async function handleChatRequest(req: Request, res: Response, model: string, api
             return;
         }
 
-        const responseData = await apiIA(API_KEY, TOKEN_MESSAGE, model);
+        // const responseData = await apiIA(API_KEY, TOKEN_MESSAGE, model);
+        const responseData = await apiIAWebSearch(API_KEY, TOKEN_MESSAGE, model);
         console.log(responseData);
         res.json(responseData.choices?.[0]?.message || { error: "Réponse invalide de l'IA." });
 
