@@ -918,7 +918,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":1,\n    \"nom\":\"Mecanique AUTOMOBILE\",\n    \"idUtilisateur\":1\n}",
+							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":6,\n    \"nom\":\"UI/UX Notion\",\n    \"idUtilisateur\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
