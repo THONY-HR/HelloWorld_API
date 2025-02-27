@@ -5,7 +5,8 @@ import { chatMistral,
     chatQwen,
     chatDeepseekFree,
     chatDeepseek,
-    chatclaude
+    chatclaude,
+    perplexity
 } from '../controllers/iaController';
 
 const router = Router();
@@ -17,4 +18,5 @@ router.post('/deepseek-32B', chatDeepseek32B);
 router.post('/deepseek', chatDeepseek);
 router.post('/qwen-turbo', chatQwen);
 router.post('/claude-3-haiku', chatclaude);
+router.post('/perplexity-r1-1776', perplexity);
 export default router;

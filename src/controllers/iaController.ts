@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Stream } from "stream";
 
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 const SITE_URL = process.env.SITE_URL || "https://helloworld-api.up.railway.app";
@@ -69,3 +68,4 @@ export const chatQwen = (req: Request, res: Response) => handleChatRequest(req, 
 export const chatDeepseekFree = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat:free", "API_KEY_OPEN_ROUTER");
 export const chatDeepseek = (req: Request, res: Response) => handleChatRequest(req, res, "deepseek/deepseek-chat", "API_KEY_OPEN_ROUTER");
 export const chatclaude = (req: Request, res: Response) => handleChatRequest(req, res, "anthropic/claude-3-haiku:beta", "API_KEY_OPEN_ROUTER");
+export const perplexity = (req: Request, res: Response) => handleChatRequest(req, res, "perplexity/r1-1776", "API_KEY_OPEN_ROUTER")
