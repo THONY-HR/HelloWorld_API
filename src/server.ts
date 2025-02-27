@@ -4,6 +4,8 @@ import path from 'path';
 
 import utilisateurRoutes from './routes/utilisateurRoutes';
 import communauteRoutes from './routes/communauteRoutes';
+import sousCommunauteRoutes from './routes/sousCommunauteRoutes';
+
 import iaRoutes from './routes/iaRoutes';
 
 const app = express();
@@ -21,6 +23,7 @@ app.use(express.json());
 // Utilise les routes pour les utilisateurs et les communautés
 app.use('/utilisateur', utilisateurRoutes);
 app.use('/communaute', communauteRoutes);
+app.use('/sousCommunaute', sousCommunauteRoutes);
 
 // Intelligence artificiel API
 app.use('/ia-Anthony', iaRoutes);
