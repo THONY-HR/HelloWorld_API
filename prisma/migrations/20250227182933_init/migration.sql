@@ -1,19 +1,11 @@
 -- CreateTable
-CREATE TABLE `User` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-    `email` VARCHAR(191) NOT NULL,
-
-    UNIQUE INDEX `User_email_key`(`email`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `Communaute` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `pays` VARCHAR(50) NOT NULL,
     `localisation` VARCHAR(100) NOT NULL,
+    `imageUrl` VARCHAR(2083) NULL,
 
+    UNIQUE INDEX `Communaute_pays_key`(`pays`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -47,6 +39,7 @@ CREATE TABLE `SousCommunaute` (
     `idCommunaute` INTEGER NOT NULL,
     `idCategorie` TINYINT NOT NULL,
     `nom` VARCHAR(50) NOT NULL,
+    `idUtilisateur` INTEGER NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `deleted_at` DATETIME(3) NULL,
 
@@ -116,6 +109,9 @@ ALTER TABLE `SousCommunaute` ADD CONSTRAINT `SousCommunaute_idCommunaute_fkey` F
 
 -- AddForeignKey
 ALTER TABLE `SousCommunaute` ADD CONSTRAINT `SousCommunaute_idCategorie_fkey` FOREIGN KEY (`idCategorie`) REFERENCES `Categorie`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `SousCommunaute` ADD CONSTRAINT `SousCommunaute_idUtilisateur_fkey` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Publication` ADD CONSTRAINT `Publication_idUtilisateur_fkey` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

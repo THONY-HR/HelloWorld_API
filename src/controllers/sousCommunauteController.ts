@@ -14,7 +14,7 @@ export const getSousCommunaute = async (req: Request, res: Response): Promise<vo
 
 // Récupérer une SousCommunaute par son id avec toutes ses données liées
 export const getSousCommunauteById = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+  const { id, idUtilisateur } = req.params;
   try {
     const sousCommunaute = await prisma.sousCommunaute.findUnique({
       where: { id: Number(id) },
@@ -29,7 +29,11 @@ export const getSousCommunauteById = async (req: Request, res: Response): Promis
       res.status(404).json({ message: "SousCommunaute non trouvée" });
       return;
     }
-    res.json(sousCommunaute);
+    var status = false;
+    if (Number(idUtilisateur) == sousCommunaute.idUtilisateur) {
+      status = true;
+    }
+    res.json({status:status,sousCommunaute});
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
@@ -57,10 +61,10 @@ export const getSousCommunauteDiscussion = async (req: Request, res: Response): 
 
 // Créer un nouvel utilisateur
 export const createSousCommunaute = async (req: Request, res: Response): Promise<void> => {
-  const { idCommunaute,idCategorie,nom} = req.body;
+  const { idCommunaute,idCategorie,nom,idUtilisateur} = req.body;
   try {
     const newSousCommunaute = await prisma.sousCommunaute.create({
-      data: {idCommunaute,idCategorie,nom},
+      data: {idCommunaute,idCategorie,nom,idUtilisateur},
     });
     res.json({ etat: true , message: "SousCommunaute créé avec succès", newSousCommunaute });
   } catch (error: any) {

@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.get('/getSousCommunaute', getSousCommunaute);
-router.get('/getSousCommunauteDetailleById/:id', getSousCommunauteById);
+router.get('/getSousCommunauteDetailleById/:id/:idUtilisateur', getSousCommunauteById);
 router.get('/getSousCommunauteDiscussion/:id', getSousCommunauteDiscussion);
 router.post('/creeSousCommunaute', createSousCommunaute);
 router.put('/updateSousCommunaute/:id', updateSousCommunaute);

@@ -781,12 +781,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}sousCommunaute/getSousCommunauteDetailleById/1",
+							"raw": "{{base_url}}sousCommunaute/getSousCommunauteDetailleById/1/1",
 							"host": [
 								"{{base_url}}sousCommunaute"
 							],
 							"path": [
 								"getSousCommunauteDetailleById",
+								"1",
 								"1"
 							]
 						},
@@ -875,7 +876,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":1,\n    \"nom\":\"Mecanique AUTO\"\n}",
+							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":6,\n    \"nom\":\"UI/UX Design\",\n    \"idUtilisateur\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -917,7 +918,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":1,\n    \"nom\":\"Mecanique AUTOMOBILE\"\n}",
+							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":1,\n    \"nom\":\"Mecanique AUTOMOBILE\",\n    \"idUtilisateur\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"

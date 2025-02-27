@@ -26,6 +26,7 @@ model Utilisateur {
   idCommunaute Int
   communaute   Communaute @relation(fields: [idCommunaute], references: [id], onDelete: Cascade)
 
+  sousCommunaute SousCommunaute[]
   publications Publication[]
   discussions  DiscussionSousCommunaute[]
   reactions    ReactionPub[]
@@ -44,12 +45,14 @@ model SousCommunaute {
   idCommunaute   Int
   idCategorie    Int       @db.TinyInt
   nom            String    @db.VarChar(50)
+  idUtilisateur  Int
   createdAt      DateTime  @default(now()) @map("created_at")
   deletedAt      DateTime? @map("deleted_at")
 
   communaute     Communaute @relation(fields: [idCommunaute], references: [id], onDelete: Cascade)
   categorie      Categorie @relation(fields: [idCategorie], references: [id], onDelete: Cascade)
-  
+  utilisateur    Utilisateur @relation(fields: [idUtilisateur], references: [id], onDelete: Cascade)
+
   publications   Publication[]
   discussions    DiscussionSousCommunaute[]
   membres        RejoindreSousCommunaute[]
