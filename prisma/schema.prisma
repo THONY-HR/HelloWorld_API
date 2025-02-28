@@ -60,7 +60,7 @@ model SousCommunaute {
 
 model Publication {
   id              Int       @id @default(autoincrement())
-  titre          String    @db.VarChar(100)
+  titre          String    @db.VarChar(255)
   contenu        String    @db.Text
   idUtilisateur  Int
   idSousCommunaute Int     @db.MediumInt

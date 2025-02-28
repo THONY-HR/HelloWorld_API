@@ -41,7 +41,7 @@ export const getPublicationById = async (req: Request, res: Response): Promise<v
   const { id } = req.params;
   try {
     const publication = await prisma.publication.findUnique({
-      where: { id: Number(id) },
+      where: { id: Number(id), deletedAt: null},
       include: {
         utilisateur: true,
         sousCommunaute: true,
