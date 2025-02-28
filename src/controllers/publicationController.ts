@@ -126,6 +126,7 @@ export const updatePublication = async (req: Request, res: Response): Promise<vo
   }
 };
 
+
 export const deletePublication = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   try {

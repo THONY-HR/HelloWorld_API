@@ -6,6 +6,7 @@ import utilisateurRoutes from './routes/utilisateurRoutes';
 import communauteRoutes from './routes/communauteRoutes';
 import sousCommunauteRoutes from './routes/sousCommunauteRoutes';
 import publicationRoutes from './routes/publicationRoutes';
+import categorieRoutes from './routes/categorieRoutes';
 
 import iaRoutes from './routes/iaRoutes';
 
@@ -26,6 +27,7 @@ app.use('/utilisateur', utilisateurRoutes);
 app.use('/communaute', communauteRoutes);
 app.use('/sousCommunaute', sousCommunauteRoutes);
 app.use('/publication', publicationRoutes);
+app.use('/categorie', categorieRoutes);
 
 // Intelligence artificiel API
 app.use('/ia-Anthony', iaRoutes);
