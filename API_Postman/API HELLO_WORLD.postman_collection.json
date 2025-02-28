@@ -699,7 +699,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": [\r\n            {\r\n                \"type\": \"text\",\r\n                \"text\": \"combien de sein dans cette image\"\r\n            },\r\n            {\r\n                \"type\": \"image_url\",\r\n                \"image_url\": {\r\n                \"url\": \"https://scontent.ftnr2-2.fna.fbcdn.net/v/t39.30808-6/481239699_1061568569318674_417550620639083378_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFbG5GkG0HAPq0C4ZHFh7W7ULH9UWHHx1BQsf1RYcfHUNsa5OpqJbEiIg5AWrAuusRUcmb7PSix_ayjmB4sk8BR&_nc_ohc=iAQ_NYvkTkAQ7kNvgEWqSgs&_nc_oc=AdhxqkZiB7QUICkQP3r559O3Ygc1j9TX5cP0HnF4M8TShKM0vzBa-SA2UP2CTa6i5GQ&_nc_zt=23&_nc_ht=scontent.ftnr2-2.fna&_nc_gid=ADKMkQ3dX0EXKvXXhfWzlVa&oh=00_AYD14l0en9Lm9q4VTnbbKKo0z_44ZnBOU3IYBnHsMrICRQ&oe=67C2455A\"\r\n                }\r\n            }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"TOKEN_MESSAGE\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": [\r\n            {\r\n                \"type\": \"text\",\r\n                \"text\": \"donne moi une titre pour cette image\"\r\n            },\r\n            {\r\n                \"type\": \"image_url\",\r\n                \"image_url\": {\r\n                \"url\": \"https://i.pinimg.com/736x/7c/db/2c/7cdb2c568d548e1e18da09d4194d1f4e.jpg\"\r\n                }\r\n            }\r\n            ]\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -932,6 +932,269 @@
 							],
 							"path": [
 								"updateSousCommunaute",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publication",
+			"item": [
+				{
+					"name": "Get All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}publication/getAllPublications",
+							"host": [
+								"{{base_url}}publication"
+							],
+							"path": [
+								"getAllPublications"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}publication/getPublicationById/1",
+							"host": [
+								"{{base_url}}publication"
+							],
+							"path": [
+								"getPublicationById",
+								"1"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get By User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}publication/getPublicationsByUser/1",
+							"host": [
+								"{{base_url}}publication"
+							],
+							"path": [
+								"getPublicationsByUser",
+								"1"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Error</th>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>{{response.error}}</td>",
+									"    </tr>",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titre\": \"Style Pop Art Contenu: L'image montre un portrait stylisé d'une femme en costume jaune vif, portant des lunettes de soleil colorées aux teintes rouges, vertes et noires\", \n    \"contenu\": \"Le fond est d'une couleur verte turquoise vive, mettant en valeur l'aspect pop art et les couleurs saturées de l'illustration. Le style graphique et géométrique crée un effet visuel intéressant et dynamique.\", \n    \"idUtilisateur\": 1, \n    \"idSousCommunaute\": 1, \n    \"mediaUrl\": \"https://i.pinimg.com/736x/7c/db/2c/7cdb2c568d548e1e18da09d4194d1f4e.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}publication/createPublication",
+							"host": [
+								"{{base_url}}publication"
+							],
+							"path": [
+								"createPublication"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titre\": \"Portrait stylisé de femme avec des lunettes de soleil colorées\", \n    \"contenu\": \"Le fond est d'une couleur verte turquoise vive, mettant en valeur l'aspect pop art et les couleurs saturées de l'illustration. Le style graphique et géométrique crée un effet visuel intéressant et dynamique.\", \n    \"idUtilisateur\": 1, \n    \"idSousCommunaute\": 1, \n    \"mediaUrl\": \"https://i.pinimg.com/736x/7c/db/2c/7cdb2c568d548e1e18da09d4194d1f4e.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}publication/updatePublication/1",
+							"host": [
+								"{{base_url}}publication"
+							],
+							"path": [
+								"updatePublication",
+								"1"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idCommunaute\":1,\n    \"idCategorie\":6,\n    \"nom\":\"UI/UX Notion\",\n    \"idUtilisateur\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}publication/deletePublication/1",
+							"host": [
+								"{{base_url}}publication"
+							],
+							"path": [
+								"deletePublication",
 								"1"
 							]
 						},
