@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -35,15 +35,15 @@ model Utilisateur {
 }
 
 model Categorie {
-  id    Int    @id @default(autoincrement()) @map("id") @db.TinyInt
+  id    Int    @id @default(autoincrement()) @map("id") @db.SmallInt
   nom   String @unique @db.VarChar(50)
   sousCommunautes SousCommunaute[]
 }
 
 model SousCommunaute {
-  id             Int       @id @default(autoincrement()) @db.MediumInt
+  id             Int       @id @default(autoincrement()) @db.Integer
   idCommunaute   Int
-  idCategorie    Int       @db.TinyInt
+  idCategorie    Int       @db.SmallInt
   nom            String    @db.VarChar(50)
   idUtilisateur  Int
   createdAt      DateTime  @default(now()) @map("created_at")
@@ -63,7 +63,7 @@ model Publication {
   titre          String    @db.VarChar(255)
   contenu        String    @db.Text
   idUtilisateur  Int
-  idSousCommunaute Int     @db.MediumInt
+  idSousCommunaute Int     @db.Integer
   mediaUrl       String?   @db.VarChar(2083)
   createdAt      DateTime  @default(now()) @map("created_at")
   deletedAt      DateTime? @map("deleted_at")
@@ -79,7 +79,7 @@ model DiscussionSousCommunaute {
   id              BigInt    @id @default(autoincrement())
   message        String    @db.Text
   idUtilisateur  Int
-  idSousCommunaute Int     @db.MediumInt
+  idSousCommunaute Int     @db.Integer
   createdAt      DateTime  @default(now()) @map("created_at")
   deletedAt      DateTime? @map("deleted_at")
 
@@ -110,7 +110,7 @@ model CommentairePub {
 }
 
 model RejoindreSousCommunaute {
-  idSousCommunaute Int  @db.MediumInt
+  idSousCommunaute Int  @db.Integer
   idUtilisateur    Int
   joinedAt         DateTime @default(now()) @map("joined_at")
 
